@@ -1,0 +1,92 @@
+Arguments: 
+  /Users/esinx/.nvm/versions/node/v18.12.1/bin/node /Users/esinx/.nvm/versions/node/v18.12.1/bin/yarn
+
+PATH: 
+  /Users/esinx/.amplify/bin:/Users/esinx/.docker/bin:/Users/esinx/Library/Android/sdk/platform-tools:/Users/esinx/Library/Android/sdk/tools:/Users/esinx/.rbenv/shims:/Users/esinx/.nvm/versions/node/v18.12.1/bin:/usr/local/sbin:/usr/local/bin:/Users/esinx/.orbstack/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/esinx/.amplify/bin:/Users/esinx/.docker/bin:/Users/esinx/Library/Android/sdk/platform-tools:/Users/esinx/Library/Android/sdk/tools:/Users/esinx/.rbenv/shims:/Users/esinx/.nvm/versions/node/v18.12.1/bin:/Users/esinx/.fig/bin:/Users/esinx/.local/bin:/Users/esinx/.antigen/bundles/lukechilds/zsh-nvm:/Users/esinx/.antigen/bundles/zsh-users/zsh-autosuggestions:/Users/esinx/.antigen/bundles/horosgrisa/autoenv:/Users/esinx/.antigen/bundles/horosgrisa/autoenv/functions:/Users/esinx/.antigen/bundles/spaceship-prompt/spaceship-prompt~/Library/Android/sdk/tools~/Library/Android/sdk/platform-tools:/Users/esinx/Library/Python/3.9/bin:/Users/esinx/.antigen/bundles/spaceship-prompt/spaceship-prompt~/Library/Android/sdk/tools~/Library/Android/sdk/platform-tools:/Users/esinx/Library/Python/3.9/bin:/Users/esinx/.local/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@esinx.webstack%2fschema: Not found
+      at params.callback [as _callback] (/Users/esinx/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/Users/esinx/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (/Users/esinx/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (/Users/esinx/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+  	"name": "@esinx.webstack/backend",
+  	"packageManager": "yarn@3.6.0",
+  	"prettier": "@esinx/prettier-config",
+  	"version": "0.0.1",
+  	"scripts": {
+  		"start": "node ./build/listen.fastify.js",
+  		"build": "swc ./src  --config-file ./.swcrc --out-dir ./build",
+  		"build:types": "tsc",
+  		"build:lambda": "ts-node ./scripts/build.lambda",
+  		"watch:build": "swc ./src  --config-file ./.swcrc --out-dir ./build --watch",
+  		"watch:run": "nodemon --enable-source-maps --watch \"./build/**/*\" -e js ./build/listen.fastify.js",
+  		"dev": "concurrently -r \"npm:watch:run\" \"npm:watch:build\""
+  	},
+  	"devDependencies": {
+  		"@esinx/eslint-config": "^1.0.4",
+  		"@esinx/prettier-config": "^1.0.0-3",
+  		"@swc/cli": "^0.1.62",
+  		"@swc/core": "^1.3.49",
+  		"@swc/jest": "^0.2.24",
+  		"@types/aws-lambda": "^8.10.119",
+  		"@types/node": "^20.3.1",
+  		"@types/pg": "^8",
+  		"@types/prettier": "^2",
+  		"@types/uuid": "^9",
+  		"chokidar": "^3.5.3",
+  		"concurrently": "^8.0.1",
+  		"esbuild": "^0.17.18",
+  		"eslint-plugin-simple-import-sort": "^10.0.0",
+  		"eslint-plugin-unused-imports": "^2.0.0",
+  		"nodemon": "^2.0.22",
+  		"trpc-playground": "^1.0.4",
+  		"ts-node": "^10.9.1",
+  		"tsconfig-paths": "^4.2.0",
+  		"typescript": "^5.0.4"
+  	},
+  	"dependencies": {
+  		"@esinx.webstack/schema": "workspace:^",
+  		"@fastify/cors": "^8.2.1",
+  		"@trpc/server": "^10.32.0",
+  		"aws-jwt-verify": "^4.0.0",
+  		"dotenv": "^16.0.3",
+  		"drizzle-orm": "^0.27.0",
+  		"drizzle-zod": "^0.4.4",
+  		"fastify": "^4.18.0",
+  		"pg": "^8.11.0",
+  		"superjson": "^1.12.3",
+  		"zod": "^3.21.4"
+  	},
+  	"_external": [
+  		"drizzle-orm",
+  		"pg"
+  	],
+  	"nodemonConfig": {
+  		"delay": 2500
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
