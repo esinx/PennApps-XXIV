@@ -114,9 +114,11 @@ const createEdgeSample = (): Edge[] => {
 		}))
 }
 
-export type MapProps = {}
+export type MapProps = {
+	onNodeClick?: (nodeLabel: string) => void
+}
 
-export const Map: React.FC<MapProps> = () => {
+export const Map: React.FC<MapProps> = ({ onNodeClick }) => {
 	const { fitView, setViewport, getNode, viewportInitialized } = useReactFlow()
 	const [nodes, , onNodesChange] = useNodesState(createMapSample())
 	const [edges, , onEdgesChange] = useEdgesState(createEdgeSample())
@@ -147,7 +149,7 @@ export const Map: React.FC<MapProps> = () => {
 			fitView
 			fitViewOptions={{ padding: 20 }}
 			nodeTypes={NODE_TYPES}
-			onNodeClick={node => {}}
+			onNodeClick={(e, n) => onNodeClick?.(n.data.label)}
 		>
 			<Controls showInteractive={true} />
 			<Background variant={BackgroundVariant.Dots} gap={16} size={1} />
