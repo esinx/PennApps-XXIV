@@ -7,11 +7,9 @@ const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
 		<main
 			css={css`
 				width: 100vw;
-				max-width: 400px;
 				min-height: 100vh;
 
 				margin: 0 auto;
-				padding: 1rem;
 			`}
 		>
 			{children}
