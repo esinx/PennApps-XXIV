@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Group,Modal, Paper, Stack, Text, TextInput, useMantineTheme } from '@mantine/core';
+import { Button, Group,Modal, Paper, Stack, TextInput, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useState } from 'react';
 
@@ -51,10 +51,10 @@ export const KeywordInput: React.FC = () => {
             console.log("test")
             open()
         }}>Add Keywords</Button>
-        <div>
+        {/* <div>
             <Text align="left">Stored Keywords:</Text>
             <Text align="left">{keywords.join(' ')}</Text>
-        </div>
+        </div> */}
       </Group>
     </>
   );
