@@ -1,5 +1,6 @@
 export type MapNode = {
 	id: string
+	color?: string
 	keyword: string
 	description?: string
 	children?: MapNode[]
@@ -8,6 +9,7 @@ export type MapNode = {
 export type FlatMapNode = {
 	id: string
 	keyword: string
+	color?: string
 	description?: string
 	parentId?: string
 }
