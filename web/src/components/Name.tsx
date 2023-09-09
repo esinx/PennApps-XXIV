@@ -8,13 +8,13 @@ export const Name: React.FC = () => {
             gradient={{ from: 'indigo', to: 'cyan', deg: 150}}
             sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
             ta="center"
-            size={20}
+            size={30}
             fw={800}
             lh={1}
             >
             MapIt
             </Text>
-            <Title order={6}>Made by <Text span variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 150 }} inherit>students</Text>, for <Text span variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 150 }} inherit>students</Text>.</Title>
+            <Title order={4}>Made by <Text span variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 150 }} inherit>students</Text>, for <Text span variant="gradient" gradient={{ from: 'indigo', to: 'cyan', deg: 150 }} inherit>students</Text>.</Title>
         </Card>
     );
 };

@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 import { Group } from '@mantine/core'
 
+import { About } from '@/components/About'
+import { KeywordInput } from '@/components/KeywordInput'
 import { Map } from '@/components/Map'
 import { Name } from '@/components/Name'
 
@@ -16,13 +18,18 @@ const IndexPage: React.FC = () => {
 					position: absolute;
 					width: 100%;
 					height: 100%;
-					z-index: 1000;
+					z-index: 100;
 					pointer-events: none;
 				`}
 			>
 				{/* Floating components go here */}
-				<Group w="100%" position="center" p={12}>
+				<Group w="100%" position="apart" p={12}>
+					<About />
 					<Name />
+					<KeywordInput />
+				</Group>
+				<Group w="100%" position="right" p={12}>
+					
 				</Group>
 			</div>
 			<div
