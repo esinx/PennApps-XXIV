@@ -14,6 +14,7 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
+import { NodeComponent } from '@/components/NodeComponent'
 import { CALCULUS_MAP, FlatMapNode, MapNode } from '@/core/map-tree'
 
 const elk = new ELK()
@@ -58,14 +59,28 @@ const useLayoutedElements = () => {
 	return { getLayoutedElements }
 }
 
+const COLORS = [
+	'#ff6565',
+	'#FF7F44',
+	'#ffe344',
+	'#00bb5a',
+	'#4444FF',
+	'#4B4482',
+]
+
+const NODE_TYPES = {
+	keyword: NodeComponent,
+}
+
 const flattenMapNode = (node: MapNode): FlatMapNode[] => {
 	const { children, ...nodeWithoutChildren } = node
 	if (!children) return [nodeWithoutChildren]
 	return [
 		nodeWithoutChildren,
 		...children
-			.map(child => ({
+			.map((child, idx) => ({
 				parentId: node.id,
+				color: node.color ?? COLORS[idx % COLORS.length],
 				...child,
 			}))
 			.flatMap(child => flattenMapNode(child)),
@@ -74,10 +89,12 @@ const flattenMapNode = (node: MapNode): FlatMapNode[] => {
 
 const createMapSample = (): Node[] =>
 	flattenMapNode(CALCULUS_MAP).map(node => ({
+		type: 'keyword',
 		id: node.id,
 		parentNodeId: node.parentId,
 		data: {
 			label: node.keyword,
+			color: node.color,
 		},
 		position: { x: 0, y: 0 },
 		sourcePosition: Position.Top,
@@ -129,6 +146,7 @@ export const Map: React.FC<MapProps> = () => {
 			onEdgesChange={onEdgesChange}
 			fitView
 			fitViewOptions={{ padding: 20 }}
+			nodeTypes={NODE_TYPES}
 			onNodeClick={node => {}}
 		>
 			<Controls showInteractive={true} />
