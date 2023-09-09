@@ -1,7 +1,8 @@
 import { css } from '@emotion/react'
-import { Card, Group, Text } from '@mantine/core'
+import { Group } from '@mantine/core'
 
 import { Map } from '@/components/Map'
+import { Name } from '@/components/Name'
 
 const IndexPage: React.FC = () => {
 	return (
@@ -21,9 +22,7 @@ const IndexPage: React.FC = () => {
 			>
 				{/* Floating components go here */}
 				<Group w="100%" position="center" p={12}>
-					<Card withBorder shadow="lg">
-						<Text>Website</Text>
-					</Card>
+					<Name />
 				</Group>
 			</div>
 			<div
