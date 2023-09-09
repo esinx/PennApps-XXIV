@@ -28,9 +28,6 @@ const IndexPage: React.FC = () => {
 					<Name />
 					<KeywordInput />
 				</Group>
-				<Group w="100%" position="right" p={12}>
-					
-				</Group>
 			</div>
 			<div
 				css={css`
