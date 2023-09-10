@@ -46,6 +46,7 @@ export const KeywordInput: React.FC = () => {
             }}
             >
             <Button onClick={handleAddKeywords} size='sm' color="ocean-blue">Submit</Button>
+            {/* After calling API, load lottie view (check loading.tsx) until API call is completed and data/mindmap is there*/}
             </MantineProvider>
             </Stack>
         </Paper>

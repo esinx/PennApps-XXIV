@@ -30,6 +30,7 @@ const IndexPage: React.FC = () => {
 					pointer-events: none;
 				`}
 			>
+				{/* <LoadingLottie /> */}
 				{/* <SplashScreen /> */}
 				{/* Floating components go here */}
 				<Group w="100%" position="apart" p={12}>
