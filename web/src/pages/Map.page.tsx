@@ -1,9 +1,12 @@
 import { css } from '@emotion/react'
 import {
+	Center,
 	Group,
 	Loader,
 	LoadingOverlay,
 	Modal,
+	Stack,
+	Text,
 	useMantineTheme,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
@@ -34,6 +37,7 @@ const MapPage: React.FC = () => {
 	const { id } = useParams()
 	const [opened, { open, close }] = useDisclosure(false)
 	const [openNodeLabel, setOpenNodeLabel] = useState<string>()
+	const [openNodeDescription, setOpenNodeDescription] = useState<string>()
 	const theme = useMantineTheme()
 
 	if (!id) throw new Error('No id provided')
@@ -102,8 +106,10 @@ const MapPage: React.FC = () => {
 					<Map
 						key={query.dataUpdatedAt}
 						rootNode={data.output}
-						onNodeClick={node => {
-							setOpenNodeLabel(node)
+						onNodeClick={(label, description) => {
+							console.log(label, description)
+							setOpenNodeLabel(label)
+							setOpenNodeDescription(description)
 							open()
 						}}
 					/>
@@ -124,11 +130,21 @@ const MapPage: React.FC = () => {
 				}}
 				transitionProps={{ transition: 'fade', duration: 200 }}
 			>
-				{
-					<Suspense fallback={<Loader />}>
-						{openNodeLabel && <NodeDetail label={openNodeLabel} />}
-					</Suspense>
-				}
+				<Stack>
+					<Text>{openNodeDescription}</Text>
+
+					{
+						<Suspense
+							fallback={
+								<Center>
+									<Loader />
+								</Center>
+							}
+						>
+							{openNodeLabel && <NodeDetail label={openNodeLabel} />}
+						</Suspense>
+					}
+				</Stack>
 			</Modal>
 		</>
 	)

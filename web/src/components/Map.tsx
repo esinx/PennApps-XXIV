@@ -95,6 +95,7 @@ const createMap = (mapNode: MapNode): Node[] =>
 		data: {
 			label: node.keyword,
 			color: node.color,
+			description: node.description,
 		},
 		position: { x: 0, y: 0 },
 		sourcePosition: Position.Top,
@@ -116,7 +117,7 @@ const createEdge = (mapNode: MapNode): Edge[] => {
 
 export type MapProps = {
 	rootNode: MapNode
-	onNodeClick?: (nodeLabel: string) => void
+	onNodeClick?: (nodeLabel: string, description: string) => void
 }
 
 export const Map: React.FC<PropsWithChildren<MapProps>> = ({
@@ -154,7 +155,7 @@ export const Map: React.FC<PropsWithChildren<MapProps>> = ({
 			fitView
 			fitViewOptions={{ padding: 20 }}
 			nodeTypes={NODE_TYPES}
-			onNodeClick={(e, n) => onNodeClick?.(n.data.label)}
+			onNodeClick={(e, n) => onNodeClick?.(n.data.label, n.data.description)}
 		>
 			<Controls showInteractive={true} />
 			<Background variant={BackgroundVariant.Dots} gap={16} size={1} />
