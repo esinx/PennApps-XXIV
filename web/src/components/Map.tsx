@@ -1,5 +1,5 @@
 import ELK, { ElkNode, LayoutOptions } from 'elkjs/lib/elk.bundled.js'
-import { useCallback, useEffect } from 'react'
+import { PropsWithChildren, useCallback, useEffect } from 'react'
 import ReactFlow, {
 	Background,
 	BackgroundVariant,
@@ -15,7 +15,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 import { NodeComponent } from '@/components/NodeComponent'
-import { CALCULUS_MAP, FlatMapNode, MapNode } from '@/core/map-tree'
+import { FlatMapNode, MapNode } from '@/core/map-tree'
 
 const elk = new ELK()
 
@@ -87,8 +87,8 @@ const flattenMapNode = (node: MapNode): FlatMapNode[] => {
 	]
 }
 
-const createMapSample = (): Node[] =>
-	flattenMapNode(CALCULUS_MAP).map(node => ({
+const createMap = (mapNode: MapNode): Node[] =>
+	flattenMapNode(mapNode).map(node => ({
 		type: 'keyword',
 		id: node.id,
 		parentNodeId: node.parentId,
@@ -101,8 +101,8 @@ const createMapSample = (): Node[] =>
 		targetPosition: Position.Bottom,
 	}))
 
-const createEdgeSample = (): Edge[] => {
-	const sample = flattenMapNode(CALCULUS_MAP)
+const createEdge = (mapNode: MapNode): Edge[] => {
+	const sample = flattenMapNode(mapNode)
 	return sample
 		.filter(node => node.parentId !== undefined)
 		.map(node => ({
@@ -115,13 +115,18 @@ const createEdgeSample = (): Edge[] => {
 }
 
 export type MapProps = {
+	rootNode: MapNode
 	onNodeClick?: (nodeLabel: string) => void
 }
 
-export const Map: React.FC<MapProps> = ({ onNodeClick }) => {
+export const Map: React.FC<PropsWithChildren<MapProps>> = ({
+	rootNode,
+	onNodeClick,
+	children,
+}) => {
 	const { fitView, setViewport, getNode, viewportInitialized } = useReactFlow()
-	const [nodes, , onNodesChange] = useNodesState(createMapSample())
-	const [edges, , onEdgesChange] = useEdgesState(createEdgeSample())
+	const [nodes, , onNodesChange] = useNodesState(createMap(rootNode))
+	const [edges, , onEdgesChange] = useEdgesState(createEdge(rootNode))
 	const { getLayoutedElements } = useLayoutedElements()
 
 	useEffect(() => {
@@ -153,6 +158,7 @@ export const Map: React.FC<MapProps> = ({ onNodeClick }) => {
 		>
 			<Controls showInteractive={true} />
 			<Background variant={BackgroundVariant.Dots} gap={16} size={1} />
+			{children}
 		</ReactFlow>
 	)
 }
