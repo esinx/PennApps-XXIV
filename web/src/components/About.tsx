@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Card, Group, List, Modal, Text, ThemeIcon, Title} from "@mantine/core";
+import { Button, Card, Group, List, MantineProvider, Modal, Text, ThemeIcon, Title} from "@mantine/core";
 import { useDisclosure } from '@mantine/hooks';
 import { IconArrowBadgeRight, IconCircleCheck } from '@tabler/icons-react';
 
@@ -8,11 +8,17 @@ export const About: React.FC = () => {
 
     return (
         <>
-    
+        <MantineProvider
+        theme={{
+            colors: {
+            'ocean-blue': ['#7AD1DD', '#5FCCDB', '#44CADC', '#2AC9DE', '#1AC2D9', '#11B7CD', '#09ADC3', '#0E99AC', '#128797', '#147885'],
+            },
+        }}
+        >
           <Modal
             opened={opened}
             onClose={close}
-            title="About Us"
+            title={<h3>About Us</h3>}
             fullScreen
             transitionProps={{ transition: 'fade', duration: 600 }}
           >
@@ -165,11 +171,16 @@ export const About: React.FC = () => {
             ={css`
             pointer-events: auto;
             `}>
-            <Button onClick={() => {
-            console.log("test")
-            open()
-            }}>About Us</Button>
+            <Button 
+            onClick={() => {
+                console.log("test")
+                open()
+            }}
+            color="ocean-blue"
+            >About Us
+            </Button>
             </Group>
+            </MantineProvider>
         </>
     );
 };
