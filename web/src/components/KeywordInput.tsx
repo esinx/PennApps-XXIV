@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Button, Group,Modal, Paper, Stack, TextInput, useMantineTheme } from '@mantine/core';
+import { Button, Group,MantineProvider,Modal, Paper, Stack, TextInput, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useState } from 'react';
 
@@ -19,7 +19,7 @@ export const KeywordInput: React.FC = () => {
       <Modal
         opened={opened}
         onClose={close}
-        title="Add Keywords Here!"
+        title={<h3>Add Keywords Here!</h3>}
         radius={'md'}
         size="auto"
         overlayProps={{
@@ -38,11 +38,26 @@ export const KeywordInput: React.FC = () => {
                 onChange={(event) => setValue(event.currentTarget.value)}
                 size='md'
             />
-            <Button onClick={handleAddKeywords} size='sm'>Submit</Button>
+            <MantineProvider
+            theme={{
+                colors: {
+                'ocean-blue': ['#7AD1DD', '#5FCCDB', '#44CADC', '#2AC9DE', '#1AC2D9', '#11B7CD', '#09ADC3', '#0E99AC', '#128797', '#147885'],
+                },
+            }}
+            >
+            <Button onClick={handleAddKeywords} size='sm' color="ocean-blue">Submit</Button>
+            </MantineProvider>
             </Stack>
         </Paper>
       </Modal>
 
+      <MantineProvider
+            theme={{
+                colors: {
+                'ocean-blue': ['#7AD1DD', '#5FCCDB', '#44CADC', '#2AC9DE', '#1AC2D9', '#11B7CD', '#09ADC3', '#0E99AC', '#128797', '#147885'],
+                },
+            }}
+            >
       <Group position="right" css
       ={css`
         pointer-events: auto;
@@ -50,12 +65,15 @@ export const KeywordInput: React.FC = () => {
         <Button onClick={() => {
             console.log("test")
             open()
-        }}>Add Keywords</Button>
+        }}
+        color="ocean-blue"
+        >Add Keywords</Button>
         {/* <div>
             <Text align="left">Stored Keywords:</Text>
             <Text align="left">{keywords.join(' ')}</Text>
         </div> */}
       </Group>
+      </MantineProvider>
     </>
   );
 
